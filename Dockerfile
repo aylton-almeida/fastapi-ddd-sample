@@ -6,10 +6,10 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-ARG APP_ENV $APP_ENV
+ARG APP_ENV="production"
 
 ENV APP_ENV $APP_ENV
 
 # Run the application
 COPY . .
-CMD uvicorn main:app --host="127.0.0.1" --port=5000 --log-level=info
+CMD uvicorn main:app --host="0.0.0.0" --port=5000 --log-level=info

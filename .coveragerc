@@ -1,0 +1,14 @@
+[run]
+branch = True
+command_line = -m unittest discover -s tests -p 'test_*.py'
+concurrency = gevent
+include = src/**/*.py
+
+[report]
+fail_under = 90
+
+[html]
+directory = coverage
+
+[xml]
+output = coverage.xml

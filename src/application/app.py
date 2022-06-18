@@ -1,8 +1,9 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from src.application.controllers import controllers
 
-PATH = '/ddd'
+PATH = "/ddd"
 
 
 def create_app():
@@ -14,13 +15,20 @@ def create_app():
 
     app = FastAPI()
 
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_methods=["*"],
+        allow_headers=["*"],
+        allow_credentials=True,
+    )
+
     # Register all controllers
     for controller in controllers:
-        app.include_router(
-            controller.router, prefix=PATH)
+        app.include_router(controller.router, prefix=PATH)
 
-    @app.get(f'{PATH}/ping')
+    @app.get(f"{PATH}/ping")
     async def _():
-        return 'pong'
+        return "pong"
 
     return app

@@ -3,7 +3,8 @@ from uuid import UUID
 from fastapi import APIRouter
 
 from src.domain.users import user_service
-from src.domain.users.user import User
+from src.domain.users.models.user_create import UserCreate
+from src.domain.users.models.user import User
 
 router = APIRouter(prefix="/users", tags=["users"])
 
@@ -19,5 +20,5 @@ async def get_user(user_id: UUID):
 
 
 @router.post("/", response_model=User)
-async def create_user(user: User):
+async def create_user(user: UserCreate):
     return user_service.create_user(user)

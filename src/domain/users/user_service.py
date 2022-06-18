@@ -3,7 +3,8 @@ from uuid import UUID
 
 from fastapi import HTTPException
 
-from src.domain.users.user import User
+from src.domain.users.models.user import User
+from src.domain.users.models.user_create import UserCreate
 from src.infrastructure.localdb import users
 
 
@@ -19,6 +20,8 @@ def get_user(user_id: UUID):
     raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="User not found")
 
 
-def create_user(user: User):
+def create_user(user_create: UserCreate):
+    user = user_create.to_user()
+
     users.users.append(user.dict())
     return user

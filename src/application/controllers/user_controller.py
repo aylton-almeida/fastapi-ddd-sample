@@ -1,18 +1,23 @@
+from uuid import UUID
+
 from fastapi import APIRouter
 
 from src.domain.users import user_service
+from src.domain.users.user import User
 
-router = APIRouter(
-    prefix='/users',
-    tags=['users']
-)
+router = APIRouter(prefix="/users", tags=["users"])
 
 
-@router.get('/')
+@router.get("/", response_model=list[User])
 async def get_users():
     return user_service.get_users()
 
 
-@router.get('/{user_id}')
-async def get_user(user_id: int):
+@router.get("/{user_id}", response_model=User)
+async def get_user(user_id: UUID):
     return user_service.get_user(user_id)
+
+
+@router.post("/", response_model=User)
+async def create_user(user: User):
+    return user_service.create_user(user)

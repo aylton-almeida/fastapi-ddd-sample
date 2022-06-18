@@ -30,6 +30,10 @@ You can also build the docker image and run it, like the following:
 
 If you're using `vscode` you can also press `F5` to run in debug mode
 
+## Documentation
+
+If you want to check the routes docs you can can run the app and go to either `http://localhost:5000/docs` or `http://localhost:5000/redoc`
+
 ## Author
 
 - Aylton Almeida

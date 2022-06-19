@@ -12,7 +12,6 @@ from .. import Base
 
 class UserEntity(Base):
     __tablename__ = "users"
-    query: any
 
     user_id = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
     username = Column(String, nullable=False)

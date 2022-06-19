@@ -19,7 +19,20 @@ class UserEntity(Base):
     age = Column(Integer, nullable=False)
     password = Column(String, nullable=False)
 
+    async def save(self, session: AsyncSession, commit=True):
+        session.add(self)
+        await session.flush([self])
+
+        if commit:
+            await session.commit()
+
+        await session.refresh(self)
+
     @staticmethod
     async def get_all(session: AsyncSession) -> list[UserEntity]:
         result: Result = await session.execute(select(UserEntity))
         return result.scalars().all()
+
+    @staticmethod
+    async def get_one(session: AsyncSession, user_id: UUID) -> list[UserEntity]:
+        return await session.get(UserEntity, user_id)

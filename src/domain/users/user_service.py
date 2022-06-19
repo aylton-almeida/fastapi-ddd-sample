@@ -1,25 +1,33 @@
+from http import HTTPStatus
+from uuid import UUID
+
+from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.domain.users.models.user import User
+from src.domain.users.models.user_create import UserCreate
 from src.infrastructure.postgresql.entities.user_entity import UserEntity
 
 
 async def get_users(session: AsyncSession) -> User:
     users = await UserEntity.get_all(session)
 
-    return [User(**user.to_dict()) for user in users]
+    return [User.from_orm(user) for user in users]
 
 
-# async def get_user(user_id: UUID):
+async def get_user(session: AsyncSession, user_id: UUID):
 
-#     if user := next((user for user in users.users if user["user_id"] == user_id), None):
-#         return User(**user)
+    user = await UserEntity.get_one(session, user_id)
 
-#     raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="User not found")
+    if user:
+        return User.from_orm(user)
+
+    raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="User not found")
 
 
-# async def create_user(user_create: UserCreate):
-#     user = user_create.to_user()
+async def create_user(session: AsyncSession, user_create: UserCreate):
 
-#     users.users.append(user.dict())
-#     return user
+    user_entity = UserEntity(**user_create.dict())
+    await user_entity.save(session)
+
+    return User.from_orm(user_entity)

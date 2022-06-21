@@ -14,6 +14,29 @@ services:
     ports:
       - "5432:5432"
     restart: unless-stopped
+    networks:
+      - fastapi-ddd-network
+
+  rabbit: # user and password are guest
+    container_name: zapt_community_rabbit
+    image: rabbitmq:3-management-alpine
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "8080:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=mqadmin
+      - RABBITMQ_DEFAULT_PASS=mqadmin
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+    networks:
+      - fastapi-ddd-network
+
+networks:
+  fastapi-ddd-network:
+    driver: bridge
 
 volumes:
   db:
+  rabbit:

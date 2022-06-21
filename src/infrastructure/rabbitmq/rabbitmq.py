@@ -1,9 +1,11 @@
 import asyncio
+import functools
 import json
 import os
 from typing import Any, Dict
 
 import pika
+from loguru import logger
 from pika.adapters.asyncio_connection import AsyncioConnection
 from pika.exchange_type import ExchangeType
 

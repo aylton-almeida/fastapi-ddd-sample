@@ -4,7 +4,17 @@ A simple fast api app using DDD folder structure
 
 ## Structure
 
-<!-- TODO: Add -->
+### Application
+
+All app rules are contained in this folder. Entry points for the application, such as `Queues` or `Routes` should be here in their own folders. Also the main `app` is also defined here.
+
+### Domain
+
+All domain rules are contained in this folder. Domain rules should be defined in their own folders. Ex.: The `user` domain may contain `services`, `models` and `enums`.
+
+### Infrastructure
+
+All infrastructure rules are contained in this folder. Infrastructure rules should be defined in their own folders. Ex.: The `connection` and `entities` for the `postgresql` database should be here. Also `configs` for a `RabbitMQ` connection should have their own folder here.
 
 ## Running
 

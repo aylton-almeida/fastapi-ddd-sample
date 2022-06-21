@@ -5,7 +5,9 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-SQLALCHEMY_DATABASE_URL = os.getenv("DB_SERVER_URL")
+from src.application.config import settings
+
+SQLALCHEMY_DATABASE_URL = settings.db_server_url
 
 __engine = create_async_engine(
     SQLALCHEMY_DATABASE_URL.replace("://", "+asyncpg://"), future=True

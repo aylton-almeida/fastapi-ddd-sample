@@ -6,3 +6,5 @@ pyhumps==3.7.1
 sqlalchemy==1.4.37
 asyncpg==0.25.0
 alembic==1.8.0
+pika==1.2.1
+loguru==0.6.0

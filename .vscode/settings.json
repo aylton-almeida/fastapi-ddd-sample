@@ -1,5 +1,18 @@
 {
-  "python.linting.pylintEnabled": true,
+  "python.languageServer": "Pylance",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
+  },
+  "python.sortImports.args": ["--src=${workspaceFolder}"],
   "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.linting.pylintArgs": ["--disable=C0103", "--enable=W0614"],
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  "python.testing.unittestArgs": ["-v", "-s", "./tests", "-p", "test_*.py"],
+  "python.testing.pytestEnabled": false,
+  "python.testing.unittestEnabled": true,
   "python.formatting.provider": "black"
 }

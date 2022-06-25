@@ -258,3 +258,6 @@ class RabbitMQ:
 #     global ep
 #     ep.publish_message(msg)
 #     return Response(status_code=204)
+
+# Reference
+# https://github.com/pika/pika/blob/main/examples/asyncio_consumer_example.py

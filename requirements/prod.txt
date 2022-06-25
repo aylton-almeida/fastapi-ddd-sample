@@ -1,0 +1,6 @@
+# Only prod-specific dependencies
+
+# Importing default requirements
+-r common.txt
+
+# Add new requirements here

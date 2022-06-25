@@ -17,8 +17,8 @@ services:
     networks:
       - fastapi-ddd-network
 
-  rabbit: # user and password are guest
-    container_name: zapt_community_rabbit
+  rabbit: # user and password are mqadmin
+    container_name: rabbit_container
     image: rabbitmq:3-management-alpine
     hostname: rabbitmq
     ports:

@@ -22,7 +22,7 @@ To run this app use the following commands:
 
 ```bash
   # Install dependencies
-  pip install -r requirements.txt
+  pip install -r requirements/prod.txt
 
   # Run the app
   uvicorn main:app --host="127.0.0.1" --port=5000 --log-level=debug --reload

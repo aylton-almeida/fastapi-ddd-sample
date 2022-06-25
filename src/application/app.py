@@ -34,6 +34,11 @@ def create_app():
     if settings.app_env != AppEnv.testing:
         scheduler.start()
 
+    # Start RabbitMQ if not in testing mode
+    if settings.app_env != AppEnv.testing:
+        # TODO: import
+        rabbit.init_app()
+
     @app.get(f"{PATH}/ping")
     async def _():
         return "pong"

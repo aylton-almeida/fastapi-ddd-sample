@@ -1,10 +1,12 @@
-pylint==2.7.4
 fastapi==0.78.0
 uvicorn==0.17.6
-black==22.3.0
 pyhumps==3.7.1
 sqlalchemy==1.4.37
 asyncpg==0.25.0
 alembic==1.8.0
-pika==1.2.1
 loguru==0.6.0
+apscheduler==3.9.1
+
+# Rabbit Dependencies
+python-dotenv==0.20.0
+pika==1.2.1
